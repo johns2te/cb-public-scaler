@@ -3,6 +3,9 @@ def mvnPodYaml = libraryResource 'podtemplates/nodejs-app/load-test-pod.yml'
 
 pipeline {
   agent any
+  triggers {
+    eventTrigger simpleMatch("thunder scale up")
+  }
   options { 
     buildDiscarder(logRotator(numToKeepStr: '10'))
     skipDefaultCheckout true

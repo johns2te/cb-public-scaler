@@ -3,6 +3,9 @@ def mvnPodYaml = libraryResource 'podtemplates/gradle/pod.yml'
 
 pipeline {
   agent any
+  triggers {
+    eventTrigger simpleMatch("thunder scale up")
+  }
   options { 
     buildDiscarder(logRotator(numToKeepStr: '10'))
     skipDefaultCheckout true

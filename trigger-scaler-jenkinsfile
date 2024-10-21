@@ -1,0 +1,11 @@
+pipeline {
+    agent any
+    stages {
+        stage('Trigger Pipelines') {
+            steps {
+                echo 'sending trigger'
+                publishEvent simpleEvent('thunder scale up')
+            }
+        }
+    }
+}
