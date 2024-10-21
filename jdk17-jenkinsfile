@@ -1,0 +1,36 @@
+library 'cb-shared-lib@main'
+def mvnPodYaml = libraryResource 'podtemplates/maven/pod.yml'
+def kubectlPodYaml = libraryResource 'podtemplates/kubectl.yml'
+environment {
+    SONAR_CRED = credentials('thunder-sonar')
+    controllerPodName = ''
+}
+
+pipeline {
+  agent any
+  options { 
+    buildDiscarder(logRotator(numToKeepStr: '10'))
+    skipDefaultCheckout true
+    preserveStashes(buildCount: 10)
+  }
+  stages {
+      stages{
+        stage('HA Maven Build Realtime') {
+          parallel {
+            stage('Maven Build') {
+              steps {
+                checkout scm
+                container('open-jdk17'){
+                  sh 'ls'
+                  sh 'java --version'
+                  sh 'echo $HOME'
+                  sh './mvnw clean package -Dcheckstyle.skip'
+                  sh 'ls -l /home/jenkins/agent/workspace/spring-petclinic_main/target/'
+                  stash name: 'petclinic-jar', includes: 'target/spring-petclinic-3.3.0-SNAPSHOT.jar '
+                }
+              }  
+            }
+          
+    }
+  } //close stages
+} //pipeline conclusion
