@@ -12,18 +12,16 @@ pipeline {
     preserveStashes(buildCount: 10)
   }
   stages {
-    stages{
-      stage('JDK11 echo...') {
-        steps {
-          checkout scm
-          container('jdk11'){
-            sh 'ls'
-            sh 'java --version'
-            sh 'sleep 60'
-            sh 'echo JDK11 completed'
-          }
-        }  
-      }     
-    }
+    stage('JDK11 echo...') {
+      steps {
+        checkout scm
+        container('jdk11'){
+          sh 'ls'
+          sh 'java --version'
+          sh 'sleep 60'
+          sh 'echo JDK11 completed'
+        }
+      }  
+    }     
   } //close stages
 } //pipeline conclusion

@@ -12,19 +12,17 @@ pipeline {
     preserveStashes(buildCount: 10)
   }
   stages {
-    stages{
-      stage('JDK17 echo...') {
-        steps {
-          checkout scm
-          container('open-jdk17'){
-            sh 'ls'
-            sh 'java --version'
-            sh 'echo $HOME'
-            sh 'sleep 60'
-            sh 'echo JDK17 completed'
-          }
-        }  
-      }     
-    }
+    stage('JDK17 echo...') {
+      steps {
+        checkout scm
+        container('open-jdk17'){
+          sh 'ls'
+          sh 'java --version'
+          sh 'echo $HOME'
+          sh 'sleep 60'
+          sh 'echo JDK17 completed'
+        }
+      }  
+    }     
   } //close stages
 } //pipeline conclusion

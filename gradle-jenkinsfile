@@ -12,18 +12,16 @@ pipeline {
     preserveStashes(buildCount: 10)
   }
   stages {
-    stages{
-      stage('gradle echo...') {
-        steps {
-          checkout scm
-          container('gradle'){
-            sh 'ls'
-            sh 'gradle --version'
-            sh 'sleep 60'
-            sh 'echo gradle completed'
-          }
-        }  
-      }     
-    }
+    stage('gradle echo...') {
+      steps {
+        checkout scm
+        container('gradle'){
+          sh 'ls'
+          sh 'gradle --version'
+          sh 'sleep 60'
+          sh 'echo gradle completed'
+        }
+      }  
+    }     
   } //close stages
 } //pipeline conclusion

@@ -12,19 +12,17 @@ pipeline {
     preserveStashes(buildCount: 10)
   }
   stages {
-    stages{
-      stage('JDK + Maven echo...') {
-        steps {
-          checkout scm
-          container('open-jdk17'){
-            sh 'ls'
-            sh 'java --version'
-            sh 'mvn -v'
-            sh 'sleep 60'
-            sh 'echo JDK17-Maven completed'
-          }
-        }  
-      }     
-    }
+    stage('JDK + Maven echo...') {
+      steps {
+        checkout scm
+        container('open-jdk17'){
+          sh 'ls'
+          sh 'java --version'
+          sh 'mvn -v'
+          sh 'sleep 60'
+          sh 'echo JDK17-Maven completed'
+        }
+      }  
+    }     
   } //close stages
 } //pipeline conclusion

@@ -12,18 +12,16 @@ pipeline {
     preserveStashes(buildCount: 10)
   }
   stages {
-    stages{
-      stage('nodejs 3echo...') {
-        steps {
-          checkout scm
-          container('nodejs'){
-            sh 'ls'
-            sh 'node --version'
-            sh 'sleep 60'
-            sh 'echo nodejs completed'
-          }
-        }  
-      }     
-    }
+    stage('nodejs 3echo...') {
+      steps {
+        checkout scm
+        container('nodejs'){
+          sh 'ls'
+          sh 'node --version'
+          sh 'sleep 60'
+          sh 'echo nodejs completed'
+        }
+      }  
+    }     
   } //close stages
 } //pipeline conclusion

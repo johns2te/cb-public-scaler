@@ -12,18 +12,16 @@ pipeline {
     preserveStashes(buildCount: 10)
   }
   stages {
-    stages{
-      stage('python3 echo...') {
-        steps {
-          checkout scm
-          container('python3'){
-            sh 'ls'
-            sh 'python --version'
-            sh 'sleep 60'
-            sh 'echo Python completed'
-          }
-        }  
-      }     
-    }
+    stage('python3 echo...') {
+      steps {
+        checkout scm
+        container('python3'){
+          sh 'ls'
+          sh 'python --version'
+          sh 'sleep 60'
+          sh 'echo Python completed'
+        }
+      }  
+    }     
   } //close stages
 } //pipeline conclusion
