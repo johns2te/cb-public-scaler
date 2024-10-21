@@ -1,5 +1,5 @@
 library 'cb-shared-lib@main'
-def mvnPodYaml = libraryResource 'podtemplates/maven/pod.yml'
+def mvnPodYaml = libraryResource 'podtemplates/gradle/pod.yml'
 
 pipeline {
   agent any
@@ -10,15 +10,14 @@ pipeline {
   }
   stages {
     stages{
-      stage('JDK17 echo...') {
+      stage('gradle echo...') {
         steps {
           checkout scm
-          container('open-jdk17'){
+          container('gradle'){
             sh 'ls'
-            sh 'java --version'
-            sh 'echo $HOME'
+            sh 'gradle --version'
             sh 'sleep 60'
-            sh 'echo JDK17 completed'
+            sh 'echo gradle completed'
           }
         }  
       }     

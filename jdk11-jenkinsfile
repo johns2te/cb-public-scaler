@@ -10,15 +10,14 @@ pipeline {
   }
   stages {
     stages{
-      stage('JDK17 echo...') {
+      stage('JDK11 echo...') {
         steps {
           checkout scm
-          container('open-jdk17'){
+          container('jdk11'){
             sh 'ls'
             sh 'java --version'
-            sh 'echo $HOME'
             sh 'sleep 60'
-            sh 'echo JDK17 completed'
+            sh 'echo JDK11 completed'
           }
         }  
       }     
