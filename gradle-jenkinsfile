@@ -1,5 +1,5 @@
 library 'cb-shared-lib@main'
-def mvnPodYaml = libraryResource 'podtemplates/gradle/pod.yml'
+def gradlePodYaml = libraryResource 'podtemplates/gradle/pod.yml'
 
 pipeline {
   agent any
@@ -13,6 +13,12 @@ pipeline {
   }
   stages {
     stage('gradle echo...') {
+      agent{
+        kubernetes {
+          inheritFrom 'gradle'
+          yaml gradlePodYaml
+        }
+      }
       steps {
         checkout scm
         container('gradle'){

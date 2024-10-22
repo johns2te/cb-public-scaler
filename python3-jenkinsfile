@@ -1,5 +1,5 @@
 library 'cb-shared-lib@main'
-def mvnPodYaml = libraryResource 'podtemplates/python/python-test-pod.yml'
+def pythonPodYaml = libraryResource 'podtemplates/python/python-test-pod.yml'
 
 pipeline {
   agent any
@@ -13,6 +13,12 @@ pipeline {
   }
   stages {
     stage('python3 echo...') {
+      agent{
+        kubernetes {
+          inheritFrom 'python-app'
+          yaml pythonPodYaml
+        }
+      }
       steps {
         checkout scm
         container('python3'){

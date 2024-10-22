@@ -1,5 +1,5 @@
 library 'cb-shared-lib@main'
-def mvnPodYaml = libraryResource 'podtemplates/nodejs-app/load-test-pod.yml'
+def nodePodYaml = libraryResource 'podtemplates/nodejs-app/load-test-pod.yml'
 
 pipeline {
   agent any
@@ -13,6 +13,12 @@ pipeline {
   }
   stages {
     stage('nodejs 3echo...') {
+      agent{
+        kubernetes {
+          inheritFrom 'nodejs-ab'
+          yaml nodePodYaml
+        }
+      }
       steps {
         checkout scm
         container('nodejs'){

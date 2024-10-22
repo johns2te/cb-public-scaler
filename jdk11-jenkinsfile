@@ -13,6 +13,12 @@ pipeline {
   }
   stages {
     stage('JDK11 echo...') {
+      agent{
+        kubernetes {
+          inheritFrom 'maven-app'
+          yaml mvnPodYaml
+        }
+      }
       steps {
         checkout scm
         container('jdk11'){
