@@ -5,6 +5,8 @@ pipeline {
             steps {
                 echo 'sending trigger'
                 publishEvent simpleEvent('thunder scale up')
+                sleep 180
+                publishEvent simpleEvent('thunder scale up')
             }
         }
     }

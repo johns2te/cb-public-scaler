@@ -12,7 +12,7 @@ pipeline {
     preserveStashes(buildCount: 10)
   }
   stages {
-    stage('nodejs 3echo...') {
+    stage('nodejs echo...') {
       agent{
         kubernetes {
           inheritFrom 'nodejs-ab'
